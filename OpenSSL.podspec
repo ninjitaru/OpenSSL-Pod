@@ -86,7 +86,7 @@ Pod::Spec.new do |s|
     echo "Building OpenSSL. This will take a while..."
     for ARCH in ${ARCHS}
     do
-      CONFIGURE_FOR="iphoneos-cross"
+      CONFIGURE_FOR="iphoneos-cross no-shared no-dso no-hw no-engine"
 
       if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ] ;
       then
