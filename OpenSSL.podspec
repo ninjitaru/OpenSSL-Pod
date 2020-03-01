@@ -96,6 +96,11 @@ Pod::Spec.new do |s|
           CONFIGURE_FOR="darwin64-x86_64-cc"
         fi
       else
+        if [ "${ARCH}" == "arm64" ] ;
+        then
+          CONFIGURE_FOR="ios64-cross no-shared no-dso no-hw no-engine"
+        fi
+
         sed -ie "s!static volatile sig_atomic_t intr_signal;!static volatile intr_signal;!" "crypto/ui/ui_openssl.c"
         PLATFORM="iPhoneOS"
       fi
