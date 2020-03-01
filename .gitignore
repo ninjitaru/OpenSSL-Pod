@@ -2,3 +2,4 @@ file.tgz
 *.tar.gz
 lib
 opensslIncludes
+.DS_Store
