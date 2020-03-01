@@ -1,6 +1,6 @@
 # Configuration
 # Pod maintainer step 1 of 2. Modify the OPENSSL_VERSION.
-OPENSSL_VERSION="1.1.1c"
+OPENSSL_VERSION="1.0.2u"
 
 # Pod maintainer step 2 of 2. Update the checksum file
 #
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.version         = "1.1.1d"
   s.summary         = "OpenSSL is an SSL/TLS and Crypto toolkit. Deprecated in Mac OS and gone in iOS, this spec gives your project non-deprecated OpenSSL support."
   s.author          = "OpenSSL Project <openssl-dev@openssl.org>"
-  s.source          = { http: "https://www.openssl.org/source/openssl-#{OPENSSL_VERSION}.tar.gz", sha256: "f6fb3079ad15076154eda9413fed42877d668e7069d9b87396d0804fdb3f4c90" }
+  s.source          = { http: "https://www.openssl.org/source/openssl-#{OPENSSL_VERSION}.tar.gz", sha256: "ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16" }
   s.homepage        = "https://github.com/WhisperSystems/OpenSSL-Pod"
   s.source_files    = "opensslIncludes/openssl/*.h"
   s.header_dir      = "openssl"
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.ios.public_header_files = "opensslIncludes/openssl/*.h"
   s.ios.vendored_libraries  = "lib/libcrypto.a", "lib/libssl.a"
 
-  s.libraries             = 'crypto', 'ssl'
+  s.libraries             = 'crypto', 'ssl', 'z'
   s.requires_arc          = false
   s.prepare_command = <<-CMD
     OPENSSL_VERSION="#{OPENSSL_VERSION}"
