@@ -1,5 +1,6 @@
-OpenSSL-Pod - forked & updated for bitcode and version 1.1.1d
+OpenSSL-Pod
 ===========
+Forked & updated for bitcode and version 1.1.1d
 
 ### Installing
 
