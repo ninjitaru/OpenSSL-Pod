@@ -1,25 +1,21 @@
 OpenSSL-Pod
 ===========
+Forked & updated for bitcode and version 1.1.1d
 
+### Installing
+
+>pod 'OpenSSL', :git => 'https://github.com/thejeff77/OpenSSL-Pod.git' :tag => '1.1.104' 
 
 ### Version numbering 
 
-Because OpenSSL's version numbers are not compatible with the CocoaPods version numbering, we will agree on the following.
+Because OpenSSL's version numbers are not compatible with the CocoaPods version numbering, versioning is as follows:
 
 OpenSSL version: A.B.CD will become A.B.C*100 + place of D in the alphabet (indexed by 1).
 
-Example: OpenSSL 1.0.1h => OpenSSL 1.0.108
+Example: OpenSSL 1.1.1d => OpenSSL 1.1.104
 
-### Keeping the pod up-to-date
+### Updating the Pod
 
-Update the podspec to reference the latest 1.0.* tarball and sha256
-checksum from https://www.openssl.org/source/
-
-**note** the 1.1.\* series has some changes that aren't compatible with
-our existing build script.
-
-**note** Most cocoapods podspecs reside within the same repository as
-the source that they build. The `source` option in your podspec
-references an external source location; However, using `source` doesn't
-play nicely with development pods or referencing a pod via git URL.
-
+1. Update the podspec to reference the latest 1.1.* tarball and sha256
+2. checksum file in repo root updated with sha256 and url from https://www.openssl.org/source/
+3. Add a pull request
