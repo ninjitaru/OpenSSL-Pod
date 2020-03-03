@@ -112,7 +112,7 @@ Pod::Spec.new do |s|
       echo "Building openssl-${OPENSSL_VERSION} for ${PLATFORM} ${SDKVERSION} ${ARCH}"
       echo "Please stand by..."
 
-      export CC="${DEVELOPER}/usr/bin/gcc -arch ${ARCH} ${MIN_SDK_VERSION_FLAG}"
+      export CC="${DEVELOPER}/usr/bin/gcc -fembed-bitcode -arch ${ARCH} ${MIN_SDK_VERSION_FLAG}"
 
       ARCH_OUTPUT_DIR="${OUTPUT_DIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
       mkdir -p "${ARCH_OUTPUT_DIR}"
