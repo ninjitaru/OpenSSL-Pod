@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
     BUILD_ROOT="/tmp/openssl-pod"
 
     # Order of ARCHS is somewhat significant since our pod exposes the headers from the last built arch
-    ARCHS="i386 x86_64 armv7 armv7s arm64"
+    ARCHS="i386 x86_64 armv7 armv7s arm64 arm64e"
     DEVELOPER=`xcode-select -print-path`
     OUTPUT_DIR="${BUILD_ROOT}/output"
 
@@ -99,7 +99,8 @@ Pod::Spec.new do |s|
       else
         if [ "${ARCH}" == "arm64" ] ;
         then
-          CONFIGURE_FOR="ios64-cross"
+	  # CONFIGURE_FOR="ios64-cross"
+          CONFIGURE_FOR="iphoneos-cross"
         fi
 
         sed -ie "s!static volatile sig_atomic_t intr_signal;!static volatile intr_signal;!" "crypto/ui/ui_openssl.c"
