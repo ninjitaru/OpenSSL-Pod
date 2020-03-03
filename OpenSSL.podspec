@@ -86,7 +86,8 @@ Pod::Spec.new do |s|
     echo "Building OpenSSL. This will take a while..."
     for ARCH in ${ARCHS}
     do
-      CONFIGURE_FOR="iphoneos-cross no-shared no-dso no-hw no-engine"
+      #CONFIGURE_FOR="iphoneos-cross no-shared no-dso no-hw no-engine"
+      CONFIGURE_FOR="iphoneos-cross"
 
       if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ] ;
       then
@@ -98,7 +99,7 @@ Pod::Spec.new do |s|
       else
         if [ "${ARCH}" == "arm64" ] ;
         then
-          CONFIGURE_FOR="ios64-cross no-shared no-dso no-hw no-engine"
+          CONFIGURE_FOR="ios64-cross"
         fi
 
         sed -ie "s!static volatile sig_atomic_t intr_signal;!static volatile intr_signal;!" "crypto/ui/ui_openssl.c"
