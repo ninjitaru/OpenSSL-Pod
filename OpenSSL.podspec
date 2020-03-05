@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.ios.public_header_files = "opensslIncludes/openssl/*.h"
   s.ios.vendored_libraries  = "lib/libcrypto.a", "lib/libssl.a"
 
-  s.libraries             = 'crypto', 'ssl', 'z'
+  s.libraries             = 'crypto', 'ssl'
   s.requires_arc          = false
   s.prepare_command = <<-CMD
     OPENSSL_VERSION="#{OPENSSL_VERSION}"
@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
     BUILD_ROOT="/tmp/openssl-pod"
 
     # Order of ARCHS is somewhat significant since our pod exposes the headers from the last built arch
-    ARCHS="i386 x86_64 armv7 armv7s arm64 arm64e"
+    ARCHS="i386 x86_64 armv7 armv7s arm64"
     DEVELOPER=`xcode-select -print-path`
     OUTPUT_DIR="${BUILD_ROOT}/output"
 
@@ -86,7 +86,6 @@ Pod::Spec.new do |s|
     echo "Building OpenSSL. This will take a while..."
     for ARCH in ${ARCHS}
     do
-      #CONFIGURE_FOR="iphoneos-cross no-shared no-dso no-hw no-engine"
       CONFIGURE_FOR="iphoneos-cross"
 
       if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ] ;
@@ -97,12 +96,6 @@ Pod::Spec.new do |s|
           CONFIGURE_FOR="darwin64-x86_64-cc"
         fi
       else
-        if [ "${ARCH}" == "arm64" ] ;
-        then
-	  # CONFIGURE_FOR="ios64-cross"
-          CONFIGURE_FOR="iphoneos-cross"
-        fi
-
         sed -ie "s!static volatile sig_atomic_t intr_signal;!static volatile intr_signal;!" "crypto/ui/ui_openssl.c"
         PLATFORM="iPhoneOS"
       fi
@@ -113,7 +106,7 @@ Pod::Spec.new do |s|
       echo "Building openssl-${OPENSSL_VERSION} for ${PLATFORM} ${SDKVERSION} ${ARCH}"
       echo "Please stand by..."
 
-      export CC="${DEVELOPER}/usr/bin/gcc -fembed-bitcode -arch ${ARCH} ${MIN_SDK_VERSION_FLAG}"
+      export CC="${DEVELOPER}/usr/bin/gcc -arch ${ARCH} ${MIN_SDK_VERSION_FLAG}"
 
       ARCH_OUTPUT_DIR="${OUTPUT_DIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
       mkdir -p "${ARCH_OUTPUT_DIR}"
