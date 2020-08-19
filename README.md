@@ -4,7 +4,7 @@ Forked & updated for bitcode and version 1.1.1d
 
 ### Installing
 
->pod 'OpenSSL', :git => 'https://github.com/thejeff77/OpenSSL-Pod.git' :tag => '1.1.104' 
+>pod 'OpenSSL', :git => 'https://github.com/ninjitaru/OpenSSL-Pod.git' :tag => '1.1.104' 
 
 ### Version numbering 
 
